@@ -54,7 +54,7 @@ func yasm(instructions []Instruction) error {
 func yasmSingle(instr string, lineno, commentPos int, inDefine bool) (string, []byte, error) {
 
 	instrFields := strings.Split(instr, "/*")
-	content_str := strings.ReplaceAdd("bits 64\n" + instrFields[0], "zmmword", "zword")
+	content_str := strings.ReplaceAll"bits 64\n" + instrFields[0], "zmmword", "zword")
 	content := []byte(content_str)
 	tmpfile, err := ioutil.TempFile("", "asm2plan9s")
 	if err != nil {
