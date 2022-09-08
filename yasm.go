@@ -55,20 +55,18 @@ func yasmSingle(instr string, lineno, commentPos int, inDefine bool) (string, []
 
 	instrFields := strings.Split(instr, "/*")
 	content := []byte("[bits 64]\n" + instrFields[0])
-
-	fmt.Println(instrFields[0])
-
 	tmpfile, err := ioutil.TempFile("", "asm2plan9s")
 	if err != nil {
 		return "", nil, err
 	}
-
 	if _, err := tmpfile.Write(content); err != nil {
 		return "", nil, err
 	}
 	if err := tmpfile.Close(); err != nil {
 		return "", nil, err
 	}
+
+	fmt.Println(string(content))
 
 	asmFile := tmpfile.Name() + ".asm"
 	objFile := tmpfile.Name() + ".obj"
