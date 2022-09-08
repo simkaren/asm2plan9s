@@ -71,8 +71,8 @@ func yasmSingle(instr string, lineno, commentPos int, inDefine bool) (string, []
 	objFile := tmpfile.Name() + ".obj"
 	os.Rename(tmpfile.Name(), asmFile)
 
-	//defer os.Remove(asmFile) // clean up
-	//defer os.Remove(objFile) // clean up
+	defer os.Remove(asmFile) // clean up
+	defer os.Remove(objFile) // clean up
 
 	app := "nasm"
 
@@ -81,7 +81,6 @@ func yasmSingle(instr string, lineno, commentPos int, inDefine bool) (string, []
 	arg2 := asmFile
 
 	cmd := exec.Command(app, arg0, arg1, arg2)
-	fmt.Println("call nasm")
 	cmb, err := cmd.CombinedOutput()
 	if err != nil {
 		if len(string(cmb)) == 0 { // command invocation failed
