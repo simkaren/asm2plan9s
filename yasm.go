@@ -67,7 +67,7 @@ func yasmSingle(instr string, lineno, commentPos int, inDefine bool) (string, []
 		return "", nil, err
 	}
 
-	fmt.Println(string(content))
+	//fmt.Println(string(content))
 
 	asmFile := tmpfile.Name() + ".asm"
 	objFile := tmpfile.Name() + ".obj"
